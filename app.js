@@ -1,14 +1,14 @@
 const http = require("http");
+const fs = require("fs");
 const server = http.createServer();
 
 server.on("request", (req, res) => {
   res.writeHead(200, {
-    "content-type": "application/json",
+    "content-type": "text/html",
   });
-  const obj = {
-    key1: "value1",
-  };
-  res.end(JSON.stringify(obj));
+  const fileContent = fs.readFileSync("./index.html", "utf8");
+  const template = fileContent.replace("{{name}}", "Fafa");
+  res.end(template);
 });
 
 server.listen(8080);
