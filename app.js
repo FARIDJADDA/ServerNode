@@ -3,10 +3,12 @@ const server = http.createServer();
 
 server.on("request", (req, res) => {
   res.writeHead(200, {
-    "content-type": "text/html",
+    "content-type": "application/json",
   });
-
-  res.end(`"got a response"`);
+  const obj = {
+    key1: "value1",
+  };
+  res.end(JSON.stringify(obj));
 });
 
 server.listen(8080);
